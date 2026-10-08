@@ -28,5 +28,6 @@ export const apiRoutes = {
     create: '/employees',
     detail: (id: string) => `/employees/${id}`,
     update: (id: string) => `/employees/${id}`,
+    monthlyApuration: (id: string, year: number, month: number) => `/employees/${id}/apurations/${year}/${month}`,
   },
 } as const;

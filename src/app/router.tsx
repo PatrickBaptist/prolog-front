@@ -2,7 +2,6 @@ import {
   BarChart3,
   BriefcaseBusiness,
   Clock3,
-  Settings2,
   UserRoundCog,
   UsersRound,
 } from 'lucide-react';
@@ -28,6 +27,9 @@ const ImportPage = lazy(() =>
 );
 const EmployeePage = lazy(() =>
   import('../features/employees/employee-page').then(({ EmployeePage }) => ({ default: EmployeePage })),
+);
+const EntryPage = lazy(() =>
+  import('../features/entries/entry-page').then(({ EntryPage }) => ({ default: EntryPage })),
 );
 
 function deferred(content: ReactNode) {
@@ -65,7 +67,7 @@ export const router = createBrowserRouter([
         children: [
           { path: appRoutes.imports, element: deferred(<ImportPage />) },
           { path: appRoutes.employees, element: deferred(<EmployeePage />) },
-          { path: appRoutes.entries, element: <ModulePlaceholderPage title="Lançamentos" description="Alimentação manual das apurações mensais e campos adicionais." icon={Settings2} /> },
+          { path: appRoutes.entries, element: deferred(<EntryPage />) },
         ],
       },
     ],

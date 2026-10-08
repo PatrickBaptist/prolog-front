@@ -43,6 +43,39 @@ export interface EmployeeDetail extends EmployeeListItem {
   }>;
   createdAt: string;
   updatedAt: string;
+  apuracoes: EmployeeApuration[];
+}
+
+export interface EmployeeApuration {
+  id: string;
+  ano: number;
+  mes: number;
+  source: 'IMPORT' | 'MANUAL';
+  statusSnapshot: EmployeeStatus | null;
+  departamentoSnapshot: string | null;
+  funcaoSnapshot: string | null;
+  horasPrevistas: number | string;
+  horasTrabalhadas: number | string;
+  horasNormais: number | string | null;
+  horasBancoFonte: number | string | null;
+  percentualAusenciaFonte: number | string | null;
+  ajusteBH: number | string | null;
+  ajuste: number | string | null;
+  salarioBase: number | string | null;
+  faltas: number | string;
+  afastamentos: number | string;
+  atrasos: number | string;
+  ferias: number | string | null;
+  ausencia: number | string | null;
+  folgaAniversario: number | string | null;
+  feriado: number | string | null;
+  casamento: number | string | null;
+  abono: number | string | null;
+  cursoAprendiz: number | string | null;
+  absenceEntries: Array<{
+    hours: number | string;
+    absenceType: { code: string; name: string };
+  }>;
 }
 
 export interface EmployeePayload {
