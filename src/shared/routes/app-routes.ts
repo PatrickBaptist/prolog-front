@@ -1,0 +1,15 @@
+export const appRoutes = {
+  root: '/',
+  login: '/login',
+  firstAccess: '/primeiro-acesso',
+  dashboard: '/dashboard',
+  headcount: '/headcount',
+  turnover: '/turnover',
+  bankHours: '/banco-de-horas',
+  absenteeism: '/absenteismo',
+  imports: '/importacoes',
+  employees: '/funcionarios',
+  entries: '/lancamentos',
+  users: '/usuarios',
+  notFound: '*',
+} as const;
