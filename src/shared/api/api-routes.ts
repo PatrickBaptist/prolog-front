@@ -13,6 +13,7 @@ export const apiRoutes = {
     absenteeism: '/dashboards/absenteeism',
   },
   imports: {
+    list: '/imports',
     employeesPreview: '/imports/employees/preview',
     employee: (id: string) => `/imports/employees/${id}`,
     employeeConfirm: (id: string) => `/imports/employees/${id}/confirm`,
@@ -20,5 +21,12 @@ export const apiRoutes = {
     absenceHours: (id: string) => `/imports/absence-hours/${id}`,
     absenceHoursConfirm: (id: string) => `/imports/absence-hours/${id}/confirm`,
     ignoreIssue: (importId: string, issueId: string) => `/imports/${importId}/issues/${issueId}/ignore`,
+    cancel: (id: string) => `/imports/${id}/cancel`,
+  },
+  employees: {
+    list: '/employees',
+    create: '/employees',
+    detail: (id: string) => `/employees/${id}`,
+    update: (id: string) => `/employees/${id}`,
   },
 } as const;

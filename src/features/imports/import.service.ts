@@ -1,6 +1,6 @@
 import { apiRoutes } from '../../shared/api/api-routes';
 import { api } from '../../shared/api/client';
-import type { ConfirmImportResponse, ImportDetail, ImportKind, ImportPreviewResponse } from './import.types';
+import type { ConfirmImportResponse, ImportDetail, ImportHistoryResponse, ImportKind, ImportPreviewResponse, ImportStatus } from './import.types';
 
 function routes(kind: ImportKind) {
   return kind === 'employees'
@@ -17,6 +17,11 @@ function routes(kind: ImportKind) {
 }
 
 export const importService = {
+  async list(params: { type?: 'EMPLOYEES' | 'ABSENCE_HOURS'; status?: ImportStatus; page: number; pageSize: number }) {
+    const { data } = await api.get<ImportHistoryResponse>(apiRoutes.imports.list, { params });
+    return data;
+  },
+
   async preview(kind: ImportKind, file: File) {
     const body = new FormData();
     body.append('file', file);
@@ -38,6 +43,11 @@ export const importService = {
 
   async ignoreIssue(importId: string, issueId: string, resolution: string) {
     const { data } = await api.patch(apiRoutes.imports.ignoreIssue(importId, issueId), { resolution });
+    return data;
+  },
+
+  async cancel(importId: string) {
+    const { data } = await api.patch<{ importId: string; status: 'CANCELLED' }>(apiRoutes.imports.cancel(importId));
     return data;
   },
 };

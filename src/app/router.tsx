@@ -2,7 +2,6 @@ import {
   BarChart3,
   BriefcaseBusiness,
   Clock3,
-  FileSpreadsheet,
   Settings2,
   UserRoundCog,
   UsersRound,
@@ -26,6 +25,9 @@ const DashboardHomePage = lazy(() =>
 );
 const ImportPage = lazy(() =>
   import('../features/imports/import-page').then(({ ImportPage }) => ({ default: ImportPage })),
+);
+const EmployeePage = lazy(() =>
+  import('../features/employees/employee-page').then(({ EmployeePage }) => ({ default: EmployeePage })),
 );
 
 function deferred(content: ReactNode) {
@@ -62,7 +64,7 @@ export const router = createBrowserRouter([
         element: <AppLayout />,
         children: [
           { path: appRoutes.imports, element: deferred(<ImportPage />) },
-          { path: appRoutes.employees, element: <ModulePlaceholderPage title="Funcionários" description="Consulta e alimentação manual dos dados permitidos para gestor e analista." icon={FileSpreadsheet} /> },
+          { path: appRoutes.employees, element: deferred(<EmployeePage />) },
           { path: appRoutes.entries, element: <ModulePlaceholderPage title="Lançamentos" description="Alimentação manual das apurações mensais e campos adicionais." icon={Settings2} /> },
         ],
       },

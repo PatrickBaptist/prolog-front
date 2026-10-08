@@ -1,5 +1,5 @@
 export type ImportKind = 'employees' | 'absenceHours';
-export type ImportStatus = 'VALIDATING' | 'READY' | 'IMPORTING' | 'COMPLETED' | 'COMPLETED_WITH_ERRORS';
+export type ImportStatus = 'UPLOADED' | 'MAPPING' | 'VALIDATING' | 'READY' | 'IMPORTING' | 'COMPLETED' | 'COMPLETED_WITH_ERRORS' | 'FAILED' | 'CANCELLED';
 
 export interface ImportSummary {
   id: string;
@@ -78,4 +78,28 @@ export interface ConfirmImportResponse {
   updatedEmployees?: number;
   createdApurations?: number;
   updatedApurations?: number;
+}
+
+export interface ImportHistoryItem {
+  id: string;
+  type: 'EMPLOYEES' | 'ABSENCE_HOURS' | 'GENERIC';
+  status: ImportStatus;
+  originalFilename: string;
+  sheetName: string | null;
+  fileSize: number | null;
+  totalRows: number;
+  acceptedRows: number;
+  rejectedRows: number;
+  warningRows: number;
+  errorMessage: string | null;
+  importedAt: string;
+  completedAt: string | null;
+  createdById: string | null;
+  createdBy: { name: string; matricula: string } | null;
+  issueCount: number;
+}
+
+export interface ImportHistoryResponse {
+  items: ImportHistoryItem[];
+  pagination: { page: number; pageSize: number; total: number; totalPages: number };
 }

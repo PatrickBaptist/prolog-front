@@ -45,4 +45,21 @@ describe('importService', () => {
       resolution: 'Linha inválida na origem.',
     });
   });
+
+  it('lista o histórico usando filtros e paginação', async () => {
+    vi.mocked(api.get).mockResolvedValue({ data: { items: [], pagination: {} } });
+    const params = { type: 'EMPLOYEES' as const, status: 'COMPLETED' as const, page: 2, pageSize: 10 };
+
+    await importService.list(params);
+
+    expect(api.get).toHaveBeenCalledWith('/imports', { params });
+  });
+
+  it('cancela a importação sem apagar o histórico', async () => {
+    vi.mocked(api.patch).mockResolvedValue({ data: { importId: 'import-4', status: 'CANCELLED' } });
+
+    await importService.cancel('import-4');
+
+    expect(api.patch).toHaveBeenCalledWith('/imports/import-4/cancel');
+  });
 });

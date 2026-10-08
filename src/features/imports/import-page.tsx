@@ -23,16 +23,21 @@ import type {
   ImportStatus,
 } from './import.types';
 import { useConfirmImport, useIgnoreImportIssue, useImportDetail, useImportPreview } from './use-imports';
+import { ImportHistory } from './import-history';
 
 const number = new Intl.NumberFormat('pt-BR', { maximumFractionDigits: 2 });
 const MAX_FILE_SIZE = 5 * 1024 * 1024;
 
 const statusLabel: Record<ImportStatus, string> = {
+  UPLOADED: 'Recebida',
+  MAPPING: 'Mapeando colunas',
   VALIDATING: 'Aguardando correções',
   READY: 'Pronta para confirmar',
   IMPORTING: 'Importando',
   COMPLETED: 'Concluída',
   COMPLETED_WITH_ERRORS: 'Concluída com linhas ignoradas',
+  FAILED: 'Falhou',
+  CANCELLED: 'Cancelada',
 };
 
 function isEmployeeRow(row: ImportRow): row is EmployeeImportRow {
@@ -251,6 +256,7 @@ export function ImportPage() {
           </div>
           {preview.isError ? <div role="alert" className="rounded-2xl border border-rose-200 bg-rose-50 p-4 text-sm text-rose-700 dark:border-rose-900 dark:bg-rose-950/40 dark:text-rose-300">{apiErrorMessage(preview.error)}</div> : null}
           <div className="flex justify-end"><Button type="button" onClick={() => void analyze()} disabled={!file || busy}>{preview.isPending ? <LoaderCircle className="size-4 animate-spin" /> : <FileCheck2 className="size-4" />}{preview.isPending ? 'Analisando planilha...' : 'Analisar planilha'}</Button></div>
+          <ImportHistory />
         </>
       ) : null}
 
