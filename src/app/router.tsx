@@ -4,7 +4,6 @@ import {
   Clock3,
   FileSpreadsheet,
   Settings2,
-  Upload,
   UserRoundCog,
   UsersRound,
 } from 'lucide-react';
@@ -24,6 +23,9 @@ const FirstAccessPage = lazy(() =>
 );
 const DashboardHomePage = lazy(() =>
   import('../pages/dashboard-home-page').then(({ DashboardHomePage }) => ({ default: DashboardHomePage })),
+);
+const ImportPage = lazy(() =>
+  import('../features/imports/import-page').then(({ ImportPage }) => ({ default: ImportPage })),
 );
 
 function deferred(content: ReactNode) {
@@ -59,7 +61,7 @@ export const router = createBrowserRouter([
       {
         element: <AppLayout />,
         children: [
-          { path: appRoutes.imports, element: <ModulePlaceholderPage title="Importações" description="Envio, prévia, validação e confirmação das planilhas mensais." icon={Upload} /> },
+          { path: appRoutes.imports, element: deferred(<ImportPage />) },
           { path: appRoutes.employees, element: <ModulePlaceholderPage title="Funcionários" description="Consulta e alimentação manual dos dados permitidos para gestor e analista." icon={FileSpreadsheet} /> },
           { path: appRoutes.entries, element: <ModulePlaceholderPage title="Lançamentos" description="Alimentação manual das apurações mensais e campos adicionais." icon={Settings2} /> },
         ],
