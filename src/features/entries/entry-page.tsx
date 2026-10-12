@@ -137,8 +137,14 @@ export function EntryPage() {
   );
 
   return (
-    <form onSubmit={submit} className="mx-auto max-w-[1500px] space-y-6" noValidate>
-      <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-end"><div><p className="text-sm font-semibold text-sky-700 dark:text-sky-400">Alimentação manual</p><h2 className="mt-1 text-2xl font-bold tracking-tight">Lançamento mensal</h2><p className="mt-2 text-sm text-slate-500 dark:text-slate-400">Os indicadores serão calculados pelo backend usando a mesma regra das planilhas.</p></div><button type="button" onClick={() => setEmployeeId(undefined)} className="inline-flex items-center gap-2 text-sm font-semibold text-sky-700 dark:text-sky-400"><X className="size-4" /> Trocar funcionário</button></div>
+    <form onSubmit={submit} className="mx-auto max-w-375 space-y-6" noValidate>
+      <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
+        <div>
+          <p className="text-sm font-semibold text-sky-700 dark:text-sky-400">Alimentação manual</p>
+          <h2 className="mt-1 text-2xl font-bold tracking-tight">Lançamento mensal</h2>
+        </div>
+          <button type="button" onClick={() => setEmployeeId(undefined)} className="inline-flex items-center gap-2 text-sm font-semibold text-sky-700 dark:text-sky-400"><X className="size-4" /> Trocar funcionário</button>
+      </div>
 
       {(employee.isLoading || period.isLoading) ? <div className="grid min-h-60 place-items-center"><LoaderCircle className="size-7 animate-spin text-slate-400" /></div> : null}
       {period.isError ? <div className="rounded-2xl bg-rose-50 p-4 text-sm text-rose-700 dark:bg-rose-950/40 dark:text-rose-300">{apiErrorMessage(period.error)}</div> : null}

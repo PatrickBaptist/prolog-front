@@ -65,7 +65,7 @@ export function DashboardHomePage() {
 
   const data = overview.data;
   return (
-    <section className="mx-auto max-w-[1500px] space-y-6">
+    <section className="mx-auto max-w-375 space-y-6">
       <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
         <div>
           <p className="text-sm font-semibold text-sky-700">Resumo mensal e anual</p>
@@ -95,7 +95,7 @@ export function DashboardHomePage() {
               <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">Prévia dos dados que alimentarão os gráficos.</p>
             </div>
             <div className="overflow-x-auto">
-              <table className="w-full min-w-[680px] text-left text-sm">
+              <table className="w-full min-w-170 text-left text-sm">
                 <thead className="bg-slate-50 text-xs uppercase tracking-wide text-slate-500 dark:bg-slate-950/60 dark:text-slate-400">
                   <tr><th className="px-5 py-3">Mês</th><th className="px-5 py-3">Previstas</th><th className="px-5 py-3">Ausências</th><th className="px-5 py-3">Absenteísmo</th><th className="px-5 py-3">Saldo BH</th></tr>
                 </thead>

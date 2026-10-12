@@ -1,4 +1,5 @@
-prints
+.prints
+.vscode
 node_modules
 dist
 .env
